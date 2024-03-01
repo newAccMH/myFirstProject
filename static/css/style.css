@@ -15,7 +15,7 @@ h1 {
     text-align: center;
 }
 
- form {
+form {
     display: inline;
 }
 
@@ -23,7 +23,11 @@ input {
     padding: 6.5px;
 }
 
- ul {
+#add-form input{
+  width: 159px;
+}
+
+ul {
     list-style-type: none; /* Remove list bullets */
     padding: 0 5px 0 0;
 }
@@ -37,6 +41,7 @@ li {
     border: none;
     border-bottom: 2px solid gray;
 }
+
 .button-group {
     padding: 8px 20px;
     color: white;
