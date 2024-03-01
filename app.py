@@ -38,9 +38,8 @@ def delete_item(item_id):
     return redirect(url_for('index'))
 
 
-@app.route('/update/<item>', methods=['POST'])
-def update_item(item):
-    item_id = int(request.form['item_id'])
+@app.route('/update/<int:item_id>', methods=['POST'])
+def update_item(item_id):
     new_item = request.form['new_item']
     item = Item.query.get_or_404(item_id)
     item.name = new_item
