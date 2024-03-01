@@ -20,12 +20,12 @@
             {% for item in items %}
             <li>
                 <!-- Update -->
-                <form action="{{ url_for('update_item', item=item) }}" method="POST">
-                    <input type="text" name="new_item" value="{{ item }}" class="bottom-outline">
+                <form action="/update/{{ item.id }}" method="POST">
+                    <input type="text" name="new_item" value="{{ item.name }}" class="bottom-outline">
                     <button type="submit" class="button-group" id="update-button">Update</button>
                 </form>
                 <!-- Delete -->
-                <form action="{{ url_for('delete_item', item=item) }}" method="POST">
+                <form action="/delete/{{ item.id }}" method="POST">
                     <button type="submit" class="button-group" id="delete-button">Delete</button>
                 </form>
             </li>
