@@ -3,25 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping List</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link href="{{ url_for('.static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <h1 id="p1">Shopping List</h1>
-        <form>
-            <input type="text" name="item">
-            <button type="submit" class="button-group" id="add-button">Add</button>
-            <button type="button" class="button-group" id="color-button" onclick="randomize()">Color</button>
-        </form>
-    </div>
+    <form action="/" method="POST">
+        <input type="text" name="item">
+        <!-- Add -->
+        <button type="submit" class="button-group" id="add-button">Add</button>
+        <!-- Colour -->
+        <button type="button" class="button-group" id="color-button" onclick="randomize()">Color</button>
+    </form>
+    <section>
+        <ul>
+            {% for item in items %}
+            <li>
+                <!-- Update -->
+                <form action="{{ url_for('update_item', item=item) }}" method="POST">
+                    <input type="text" name="new_item" value="{{ item }}" class="bottom-outline">
+                    <button type="submit" class="button-group" id="update-button">Update</button>
+                </form>
+                <!-- Delete -->
+                <form action="{{ url_for('delete_item', item=item) }}" method="POST">
+                    <button type="submit" class="button-group" id="delete-button">Delete</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
 <script>
-        function randomColors() {
-          return '#' + Math.floor(Math.random() * 16777215).toString(16);
-        }
+    function randomColors() {
+      return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    }
 
-        function randomize() {
-          document.getElementById('p1').style.color = randomColors();
-        }
+    function randomize() {
+      document.getElementById('p1').style.color = randomColors();
+    }
 </script>
 </body>
 
